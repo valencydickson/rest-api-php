@@ -13,7 +13,6 @@ $db = $database->connect();
 //instatiate Posts
 
 $post = new Post($db);
-
 $results = $post->getPosts();
 
 //check if there is a post
