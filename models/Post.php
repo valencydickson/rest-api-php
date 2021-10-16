@@ -14,6 +14,8 @@ class Post
         $this->pdo = $db;
     }
 
+
+    //Get all posts
     public function getPosts()
     {
         $sql = $this->pdo->prepare(
@@ -36,6 +38,8 @@ class Post
         return $sql;
     }
 
+
+    //Get single post
     public function getPost(){
         $sql = $this->pdo->prepare(
             "SELECT
@@ -67,6 +71,8 @@ class Post
         $this->category_name = $row["category_name"];
     }
 
+
+    //create post
     public function create(){
         $sql = $this->pdo->prepare(
             "INSERT INTO posts
@@ -96,6 +102,19 @@ class Post
         }
         return false;
 
+    }
+
+    //delete post
+    public function delete(){
+        $sql = $this->pdo->prepare("DELETE FROM posts WHERE id = :id");
+
+        $sql->bindParam(":id",$this->id);
+
+        if($sql->execute()){
+            return true;
+        }
+        return false;
+        
     }
 
 
